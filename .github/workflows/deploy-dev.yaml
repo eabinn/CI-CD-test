@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest # machine
 
     steps:
+      - name: git clone
+        uses: actions/checkout@v3
+
       - name: check client directory has changed
         uses: dorny/paths-filter@v2
         id: changes
@@ -17,10 +20,6 @@ jobs:
           filters: |
             src: 
               - 'pages/**'
-
-      - if: steps.changes.outputs.src == 'true'
-        name: git clone
-        uses: actions/checkout@v3
 
       - if: steps.changes.outputs.src == 'true'
         name: set node version

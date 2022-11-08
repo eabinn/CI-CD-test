@@ -9,6 +9,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest # machine
 
+    permisions:
+      id-token: write
+
     steps:
       - name: git clone
         uses: actions/checkout@v3
@@ -42,3 +45,17 @@ jobs:
       - if: steps.changes.outputs.src == 'true'
         name: build
         run: yarn build
+
+      - if: steps.changes.outputs.src == 'true'
+        name: auth
+        uses: "google-github-actions/auth@v0"
+        with:
+          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCOUNT }}
+
+      - if: steps.changes.outputs.src == 'true'
+        name: deploy
+        uses: "google-github-actions/deploy-appengine@v0"
+        with:
+          deliverables: "app.yaml"
+          promote: true

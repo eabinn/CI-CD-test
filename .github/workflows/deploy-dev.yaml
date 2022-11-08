@@ -12,44 +12,43 @@ on:
       - "pages/**/*.*"
 
 jobs:
-  if_merged:
-    deploy:
-      if: ${{ github.event.label.name == 'front-app' }}
-      runs-on: ubuntu-latest # machine
+  deploy:
+    if: github.event.pull_request.merged == true && ${{ github.event.label.name == 'front-app' }}
+    runs-on: ubuntu-latest # machine
 
-      permissions:
-        id-token: write
+    permissions:
+      id-token: write
 
-      steps:
-        - name: git clone
-          uses: actions/checkout@v3
+    steps:
+      - name: git clone
+        uses: actions/checkout@v3
 
-        - name: set node version
-          uses: actions/setup-node@v3
-          with:
-            node-version: 16.15.1
+      - name: set node version
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.15.1
 
-        - name: install yarn
-          run: npm i -g yarn
+      - name: install yarn
+        run: npm i -g yarn
 
-        - name: set yarn version
-          run: yarn set version 1.22.19
+      - name: set yarn version
+        run: yarn set version 1.22.19
 
-        - name: install dependencies
-          run: yarn install
+      - name: install dependencies
+        run: yarn install
 
-        - name: build
-          run: yarn build
+      - name: build
+        run: yarn build
 
-        - name: auth
-          uses: "google-github-actions/auth@v0"
-          with:
-            workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
-            service_account: ${{ secrets.SERVICE_ACCOUNT }}
+      - name: auth
+        uses: "google-github-actions/auth@v0"
+        with:
+          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCOUNT }}
 
-        - name: deploy
-          uses: "google-github-actions/deploy-appengine@v0"
-          with:
-            deliverables: "app.yaml"
-            promote: false
-            version: dev
+      - name: deploy
+        uses: "google-github-actions/deploy-appengine@v0"
+        with:
+          deliverables: "app.yaml"
+          promote: false
+          version: dev

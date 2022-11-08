@@ -1,0 +1,10 @@
+# @see https://cloud.google.com/appengine/docs/standard/nodejs/config/appref
+runtime: nodejs16
+env: standard
+service: front-app
+instance_class: F2
+
+handlers:
+  - url: /.*
+    secure: always
+    script: auto

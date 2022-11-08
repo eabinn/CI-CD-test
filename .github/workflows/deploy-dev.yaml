@@ -58,4 +58,4 @@ jobs:
         uses: "google-github-actions/deploy-appengine@v0"
         with:
           deliverables: "app.yaml"
-          promote: true
+          promote: false

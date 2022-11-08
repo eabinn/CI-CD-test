@@ -12,7 +12,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to the Helllll</h1>
+        <h1 className={styles.title}>안녕하세요</h1>
 
         <p className={styles.description}>
           Get started by editing{" "}

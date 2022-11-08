@@ -3,7 +3,6 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   basePath: "/app",
-  distDir: "build",
 };
 
 module.exports = nextConfig;

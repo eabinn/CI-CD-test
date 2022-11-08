@@ -12,7 +12,9 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>안녕하세요</h1>
+        <h1 className={styles.title}>
+          안녕하세요 라벨 붙은 PR 머지 후 동작하는지 확인해요.
+        </h1>
 
         <p className={styles.description}>
           Get started by editing{" "}

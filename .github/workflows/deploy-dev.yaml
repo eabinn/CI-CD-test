@@ -1,9 +1,15 @@
+# PR이 develop 브랜치에 머지가 되면 자동으로 실행되는 워크 플로우 입니다.
+
 name: Deploy development
 
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
-      - main
+      - "develop"
+    paths:
+      - "pages/**/*.*"
 
 jobs:
   deploy:
@@ -16,45 +22,30 @@ jobs:
       - name: git clone
         uses: actions/checkout@v3
 
-      - name: check client directory has changed
-        uses: dorny/paths-filter@v2
-        id: changes
-        with: # pages 디렉토리 하위 내용이 바뀌면 배포를 계속 진행한다.
-          filters: |
-            src: 
-              - 'pages/**'
-
-      - if: steps.changes.outputs.src == 'true'
-        name: set node version
+      - name: set node version
         uses: actions/setup-node@v3
         with:
           node-version: 16.15.1
 
-      - if: steps.changes.outputs.src == 'true'
-        name: install yarn
+      - name: install yarn
         run: npm i -g yarn
 
-      - if: steps.changes.outputs.src == 'true'
-        name: set yarn version
+      - name: set yarn version
         run: yarn set version 1.22.19
 
-      - if: steps.changes.outputs.src == 'true'
-        name: install dependencies
+      - name: install dependencies
         run: yarn install
 
-      - if: steps.changes.outputs.src == 'true'
-        name: build
+      - name: build
         run: yarn build
 
-      - if: steps.changes.outputs.src == 'true'
-        name: auth
+      - name: auth
         uses: "google-github-actions/auth@v0"
         with:
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.SERVICE_ACCOUNT }}
 
-      - if: steps.changes.outputs.src == 'true'
-        name: deploy
+      - name: deploy
         uses: "google-github-actions/deploy-appengine@v0"
         with:
           deliverables: "app.yaml"

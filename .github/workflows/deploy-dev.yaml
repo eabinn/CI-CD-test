@@ -12,8 +12,8 @@ on:
       - "pages/**/*.*"
 
 jobs:
-  deploy:
-    if_merged:
+  if_merged:
+    deploy:
       if: ${{ github.event.label.name == 'front-app' }}
       runs-on: ubuntu-latest # machine
 

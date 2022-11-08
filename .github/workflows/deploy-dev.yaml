@@ -14,7 +14,7 @@ on:
 jobs:
   deploy:
     if: ${{ (github.event.pull_request.merged == true) && (contains(github.event.pull_request.labels.*.name, 'front-app')) }}
-    runs-on: ubuntu-latest # machine
+    runs-on: ubuntu-latest # runner
 
     permissions:
       id-token: write

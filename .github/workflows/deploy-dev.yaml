@@ -59,3 +59,4 @@ jobs:
         with:
           deliverables: "app.yaml"
           promote: false
+          version: dev

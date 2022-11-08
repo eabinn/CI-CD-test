@@ -9,7 +9,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest # machine
 
-    permisions:
+    permissions:
       id-token: write
 
     steps:

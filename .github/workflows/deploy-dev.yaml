@@ -13,7 +13,7 @@ on:
 
 jobs:
   deploy:
-    if: github.event.pull_request.merged == true && ${{ github.event.label.name == 'front-app' }}
+    if: ${{ (github.event.pull_request.merged == true) && (contains(github.event.pull_request.labels.*.name, 'front-app')) }}
     runs-on: ubuntu-latest # machine
 
     permissions:

@@ -4,16 +4,19 @@
 name: Deploy development
 
 on:
-  pull_request:
-    types: [labeled, closed]
+  push:
     branches:
-      - "develop"
-    paths:
-      - "pages/**/*.*"
+      - develop
+  # pull_request:
+  # types: [labeled, closed]
+  # branches:
+  # - "develop"
+  # paths:
+  # - "pages/**/*.*"
 
 jobs:
   deploy:
-    if: ${{ (github.event.pull_request.merged == true) && (contains(github.event.pull_request.labels.*.name, 'front-app')) }}
+    # if: ${{ (github.event.pull_request.merged == true) && (contains(github.event.pull_request.labels.*.name, 'front-app')) }}
     runs-on: ubuntu-latest # runner
 
     permissions:

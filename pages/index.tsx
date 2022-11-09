@@ -14,6 +14,7 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>동작 재확인 한번 더 </h1>
         <h1 className={styles.title}>동작 재확인 한번 더 </h1>
+        <h1 className={styles.title}>동작 재확인 한번 더 </h1>
 
         <p className={styles.description}>
           Get started by editing{" "}

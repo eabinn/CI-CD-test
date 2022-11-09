@@ -12,10 +12,9 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-
-        <h1 className={styles.title}>동작 재확인 한번 더 </h1>
-        <h1 className={styles.title}>동작 재확인 한번 더 </h1>
-        <h1 className={styles.title}>동작 재확인 한번 더 </h1>
+        <h1 className={styles.title}>
+          진짜 마지막 속성 조건으로 배포 진행할 수 있는지 확인하는 것 진행
+        </h1>
 
         <p className={styles.description}>
           Get started by editing{" "}

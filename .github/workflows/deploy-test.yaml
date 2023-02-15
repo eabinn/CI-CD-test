@@ -1,11 +1,10 @@
-
 name: Deploy TEST
 
 on:
   workflow_dispatch:
     inputs:
       tags:
-        description: 'Deploy by a tag'
+        description: "Deploy by a tag"
         required: true
         type: boolean
 
@@ -14,5 +13,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run |
-          echo "HELLO"
-          echo "TAGS: $TAGS"
+        echo "HELLO"
+        echo "$TAGS"

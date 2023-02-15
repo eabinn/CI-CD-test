@@ -23,4 +23,4 @@ jobs:
       - run: |
           echo "HELLO"
           echo "GITHUB_REF: $GITHUB_REF"
-          echo ${{ inputs.tags }}
+          echo "${{ inputs.tag }}"

@@ -3,6 +3,10 @@ name: Deploy TEST
 on:
   workflow_dispatch:
     inputs:
+      tag:
+        description: 'Relese tag'
+        required: true
+
       project:
         description: "Project"
         required: true

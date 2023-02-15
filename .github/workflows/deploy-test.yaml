@@ -3,10 +3,6 @@ name: Deploy TEST
 on:
   workflow_dispatch:
     inputs:
-      tag:
-        description: 'Relese tag'
-        required: true
-
       project:
         description: "Project"
         required: true
@@ -23,7 +19,7 @@ jobs:
       - run: |
           echo "HELLO"
           echo "GITHUB_REF: $GITHUB_REF"
-          echo "${{ inputs.tag }}"
+          echo "${{ github.ref }}"
 
   deploy:
     # if: ${{ (github.event.pull_request.merged == true) && (contains(github.event.pull_request.labels.*.name, 'front-app')) }}
@@ -35,9 +31,8 @@ jobs:
     steps:
       - name: git clone
         uses: actions/checkout@v3
-
-      - name: checkout release tag 
-        run: git tag ${{ github.event.inputs.tag }}
+        with:
+          ref: ${{ github.ref }}
 
       - name: set node version
         uses: actions/setup-node@v3

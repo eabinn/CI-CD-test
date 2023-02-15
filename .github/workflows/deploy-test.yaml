@@ -24,3 +24,34 @@ jobs:
           echo "HELLO"
           echo "GITHUB_REF: $GITHUB_REF"
           echo "${{ inputs.tag }}"
+
+  deploy:
+    # if: ${{ (github.event.pull_request.merged == true) && (contains(github.event.pull_request.labels.*.name, 'front-app')) }}
+    runs-on: ubuntu-latest # runner
+
+    permissions:
+      id-token: write
+
+    steps:
+      - name: git clone
+        uses: actions/checkout@v3
+
+      - name: checkout release tag 
+        run: git tag ${{ github.event.inputs.tag }}
+
+      - name: set node version
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.15.1
+
+      - name: install yarn
+        run: npm i -g yarn
+
+      - name: set yarn version
+        run: yarn set version 1.22.19
+
+      - name: install dependencies
+        run: yarn install
+
+      - name: build
+        run: yarn build

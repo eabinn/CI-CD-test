@@ -3,8 +3,10 @@ name: Deploy TEST
 on:
   workflow_dispatch:
     inputs:
-      parameter:
-        description: My Parameter
+      tag:
+        description: 'New tag name'
+        required: true
+
 
 jobs:
   log-the-inputs:

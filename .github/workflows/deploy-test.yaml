@@ -11,5 +11,8 @@ on:
 
 jobs:
   hello:
-    echo "HELLO"
-    echo "TAGS: $TAGS"
+    runs-on: ubuntu-latest
+    steps:
+      - run |
+          echo "HELLO"
+          echo "TAGS: $TAGS"

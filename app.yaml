@@ -1,5 +1,5 @@
 # @see https://cloud.google.com/appengine/docs/standard/nodejs/config/appref
 runtime: nodejs16
 env: standard
-service: front-app
+service: front-app-dev
 instance_class: F2

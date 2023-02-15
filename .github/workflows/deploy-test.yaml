@@ -3,9 +3,13 @@ name: Deploy TEST
 on:
   workflow_dispatch:
     inputs:
-      tag:
-        description: 'New tag name'
+      project:
+        description: "Project"
         required: true
+        type: choice
+        options:
+          - enterprise
+          - multi-tenant
 
 
 jobs:

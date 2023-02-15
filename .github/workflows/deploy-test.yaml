@@ -1,0 +1,15 @@
+
+name: Deploy TEST
+
+on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Deploy by a tag'
+        required: true
+        type: boolean
+
+jobs:
+  hello:
+    echo "HELLO"
+    echo "TAGS: $TAGS"

@@ -1,17 +1,12 @@
 name: Deploy TEST
 
 on:
-  workflow_dispatch:
-    inputs:
-      tags:
-        description: "Deploy by a tag"
-        required: true
-        type: boolean
+  workflow_dispatch
 
 jobs:
-  hello:
+  log-the-inputs:
     runs-on: ubuntu-latest
     steps:
-      - run |
-        echo "HELLO"
-        echo "$TAGS"
+      - run: |
+          echo "HELLO"
+          echo "GITHUB_REF: $GITHUB_REF"

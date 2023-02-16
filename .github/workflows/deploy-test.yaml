@@ -3,7 +3,7 @@ name: Deploy TEST
 on:
   workflow_dispatch:
     inputs:
-      branch:
+      target_branch:
         description: "Branch"
         required: true
         type: input
@@ -36,7 +36,7 @@ jobs:
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
           echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
-          echo "${{ (github.event.inputs.branch }}"
+          echo "${{ (github.event.inputs.target_branch }}"
       
       - name: Check outputs
         run: |

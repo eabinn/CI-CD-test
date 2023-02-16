@@ -6,6 +6,7 @@ on:
       branch:
         description: "Branch"
         required: true
+        type: input
       project:
         description: "Project"
         required: true

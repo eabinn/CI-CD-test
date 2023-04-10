@@ -1,6 +1,8 @@
 FROM node:16.15.1-alpine as base
 
-COPY /apps/main-app ./
+COPY . .
+
+WORKDIR /apps/main-app
 
 EXPOSE 8080
 

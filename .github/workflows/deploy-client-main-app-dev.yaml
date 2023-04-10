@@ -52,6 +52,7 @@ jobs:
         run: |
           cd /apps/main-app
           echo "NEXT_PUBLIC_HUB_API_HOST='https://hub-${{ steps.vars.outputs.stage }}.airklass.com'" >> .env.production
+          echo "NEXT_PUBLIC_ASSET_PREFIX='https://shared.static.airklass.com/front/main-app/${{ steps.vars.outputs.stage }}/${{ steps.vars.outputs.sha_short}}'" >> .env.production
 
       - name: Install dependencies
         run: pnpm install

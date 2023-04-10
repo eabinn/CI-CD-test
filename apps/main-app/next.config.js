@@ -4,6 +4,7 @@ const nextConfig = {
   swcMinify: true,
   basePath: "/app",
   distDir: "build",
+  ...(process.env.NODE_ENV === "production" && { output: "standalone" }),
 };
 
 module.exports = nextConfig;

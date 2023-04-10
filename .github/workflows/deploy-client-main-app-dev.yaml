@@ -89,7 +89,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: asia-northeast3-docker.pkg.dev/multi-tenant-biz1/front/main-app
+          images: asia-northeast3-docker.pkg.dev/shared-resource-366111/qube-front-apps/main-app
           flavor: |
             latest=true
           tags: |

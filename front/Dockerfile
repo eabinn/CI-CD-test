@@ -4,4 +4,6 @@ COPY . .
 
 EXPOSE 8080
 
+WORKDIR /apps/main-app
+
 CMD ["node ", "server.js"]

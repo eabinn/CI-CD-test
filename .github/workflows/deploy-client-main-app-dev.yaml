@@ -1,4 +1,4 @@
-name: Deploy client main app development stage
+name: Client - Deploy client main app development stage
 
 on:
   workflow_dispatch:
@@ -14,6 +14,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest # runner
+    defaults:
+      run:
+        working-directory: ./front
 
     permissions:
       contents: read
@@ -44,6 +47,11 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 7.27.0
+
+      - name: Set environment variables
+        run: |
+          cd /apps/main-app
+          echo "NEXT_PUBLIC_HUB_API_HOST='https://hub-${{ steps.vars.outputs.stage }}.airklass.com'" >> .env.production
 
       - name: Install dependencies
         run: pnpm install

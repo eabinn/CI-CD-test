@@ -93,8 +93,8 @@ jobs:
           flavor: |
             latest=true
           tags: |
-            type=${{ steps.vars.outputs.sha_short }}
-            type=${{ steps.vars.outputs.stage }}
+            ${{ steps.vars.outputs.sha_short }}
+            ${{ steps.vars.outputs.stage }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2

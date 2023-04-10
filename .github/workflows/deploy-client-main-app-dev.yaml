@@ -52,7 +52,7 @@ jobs:
         run: pnpm -w run build-main-app
 
       - name: Authenticate google cloud storage
-        uses: "google-github-actions/auth@v0"
+        uses: "google-github-actions/auth@v1"
         with:
           workload_identity_provider: "projects/395494119178/locations/global/workloadIdentityPools/github-action/providers/github-action-oidc"
           service_account: "github-action-deploy@shared-resource-366111.iam.gserviceaccount.com"

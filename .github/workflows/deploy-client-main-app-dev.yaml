@@ -1,0 +1,25 @@
+name: Deploy client main app development stage
+
+on:
+  pull_request:
+    types: [labeled, closed]
+    branches:
+      - "develop"
+    paths:
+      - "front/**/*"
+
+jobs:
+  deploy:
+    if: ${{ (github.event.pull_request.merged == true) && (contains(github.event.pull_request.labels.*.name, 'front-app')) || (github.event_name == 'workflow_dispatch') }}
+    runs-on: ubuntu-latest # runner
+
+    permissions:
+      contents: read
+      id-token: write # google-github-actions/auth 액션 사용하기 위해 필요하다.
+
+    env:
+      SHA_SHORT: git rev-parse --short HEAD
+
+    steps:
+      - name: Check variables
+        run: echo $SHA_SHORT

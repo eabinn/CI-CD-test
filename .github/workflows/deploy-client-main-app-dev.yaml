@@ -48,6 +48,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Build main app project
+        run: pnpm -w run build-main-app
+
       - name: Authenticate google cloud storage
         uses: "google-github-actions/auth@v0"
         with:

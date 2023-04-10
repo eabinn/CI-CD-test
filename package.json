@@ -4,9 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "nx": "nx",
+    "dev-main-app": "npx nx run-many --target=dev --projects=core,ui,main-app",
+    "build-main-app": "npx nx run-many --target=build --projects=main-app",
+    "graph": "npx nx graph"
   },
   "keywords": [],
   "author": "eabinn",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@nrwl/nx-linux-x64-gnu": "^15.8.7",
+    "nx": "^15.8.2",
+    "tsdx": "^0.14.1"
+  }
 }

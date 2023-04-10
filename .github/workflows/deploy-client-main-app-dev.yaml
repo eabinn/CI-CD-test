@@ -62,7 +62,7 @@ jobs:
         run: pnpm -w run build-main-app
         working-directory: ${{ env.working-directory }}
 
-      - name: Authenticate Google Cloud Storage
+      - name: Authenticate to project Shared Resource
         uses: "google-github-actions/auth@v1"
         id: "auth"
         with:
@@ -81,7 +81,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: asia-northeast3-docker.pkg.dev
-          username: oauth2accesstoken
+          username: "github-action-deploy@shared-resource-366111.iam.gserviceaccount.com"
           password: ${{ steps.auth.outputs.access_token }}
 
       - name: Set up Docker Buildx
@@ -93,4 +93,4 @@ jobs:
           context: ./front/apps/main-app/build/standalone
           file: ./front/Dockerfile
           push: true
-          tags: qube-front-apps/main-app:latest , qube-front-apps/main-app:${{ steps.vars.outputs.sha_short }} , qube-front-apps/main-app:${{ steps.vars.outputs.stage }}
+          tags: qube-front-apps/main-app:latest,qube-front-apps/main-app:${{ steps.vars.outputs.sha_short }},qube-front-apps/main-app:${{ steps.vars.outputs.stage }}

@@ -23,5 +23,11 @@ jobs:
       SHA_SHORT: $(git rev-parse --short HEAD)
 
     steps:
+      - name: Set variables
+        id: vars
+        run: |
+          echo "sha_short=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
       - name: Check variables
-        run: echo $SHA_SHORT
+        run: |
+          echo "sha_short: ${{ steps.vars.outputs.sha_short }}"

@@ -20,7 +20,7 @@ jobs:
       id-token: write # google-github-actions/auth 액션 사용하기 위해 필요하다.
 
     env:
-      SHA_SHORT: git rev-parse --short HEAD
+      SHA_SHORT: $(git rev-parse --short HEAD)
 
     steps:
       - name: Check variables

@@ -4,6 +4,10 @@ COPY . .
 
 WORKDIR /apps/main-app
 
+ENV NODE_ENV=production
+
+ENV PORT=8080
+
 EXPOSE 8080
 
-CMD ["PORT","=", "8080", "node", "server.js"]
+CMD ["node", "server.js"]

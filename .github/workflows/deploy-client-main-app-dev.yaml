@@ -106,4 +106,3 @@ jobs:
           context: ./front/apps/main-app/build/standalone
           file: ./front/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}

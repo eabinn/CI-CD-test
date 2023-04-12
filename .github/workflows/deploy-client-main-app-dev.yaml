@@ -93,7 +93,7 @@ jobs:
           flavor: |
             latest=true
           tags: |
-            ${{ steps.vars.outputs.sha_short }}
+            type=sha,enabled=true,priority=100,format=short
             ${{ steps.vars.outputs.stage }}
 
       - name: Set up Docker Buildx

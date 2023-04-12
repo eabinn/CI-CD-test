@@ -35,7 +35,7 @@ jobs:
           echo "registry=asia-northeast3-docker.pkg.dev" >> "$GITHUB_OUTPUT"
           echo "project=shared-resource-366111" >> "$GITHUB_OUTPUT"
           echo "repository=qube-front-apps" >> "$GITHUB_OUTPUT"
-          echo "app=main-app" >> "$GITHUB_OUTPUT
+          echo "app=main-app" >> "$GITHUB_OUTPUT"
 
       - name: Check variables
         run: |

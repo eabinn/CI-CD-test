@@ -105,4 +105,4 @@ jobs:
           context: ./front/apps/main-app/build/standalone
           file: ./front/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: asia-northeast3-docker.pkg.dev/shared-resource-366111/qube-front-apps/main-app:dev, asia-northeast3-docker.pkg.dev/shared-resource-366111/qube-front-apps/main-app:latest,asia-northeast3-docker.pkg.dev/shared-resource-366111/qube-front-apps/main-app:inbae

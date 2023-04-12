@@ -99,3 +99,17 @@ jobs:
             asia-northeast3-docker.pkg.dev/shared-resource-366111/qube-front-apps/main-app:${{ steps.vars.outputs.stage }}
             asia-northeast3-docker.pkg.dev/shared-resource-366111/qube-front-apps/main-app:${{ steps.vars.outputs.sha_short}}
             asia-northeast3-docker.pkg.dev/shared-resource-366111/qube-front-apps/main-app:latest
+
+      - name: Delte untagged Docker images from Artifact Registry
+        run: |
+          # Find the Docker image IDs of untagged images
+          IDS=$(gcloud artifacts docker images list --repository="$REPOSITORY" --format="value(digest)" --filter="tags=NOTHING_FOUND" --sort-by="TIMESTAMP")
+
+          # Delete the untagged images
+          if [ -n "$IDS" ]; then
+            for ID in $IDS; do
+              gcloud artifacts docker images delete --quiet --force-delete-tags "$REPOSITORY@$ID"
+            done
+          else
+            echo "No untagged images found."
+          fi

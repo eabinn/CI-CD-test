@@ -102,7 +102,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
+          platforms: linux/amd64
           context: ./front/apps/main-app/build/standalone
           file: ./front/Dockerfile
           push: true
-          tags: asia-northeast3-docker.pkg.dev/shared-resource-366111/qube-front-apps/main-app:dev, asia-northeast3-docker.pkg.dev/shared-resource-366111/qube-front-apps/main-app:latest,asia-northeast3-docker.pkg.dev/shared-resource-366111/qube-front-apps/main-app:inbae
+          tags: ${{ steps.meta.outputs.tags }}

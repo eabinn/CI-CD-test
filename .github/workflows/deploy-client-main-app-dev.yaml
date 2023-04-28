@@ -53,8 +53,11 @@ jobs:
           echo "project=shared-resource-366111" >> "$GITHUB_OUTPUT"
           echo "repository=qube-front-apps" >> "$GITHUB_OUTPUT"
           echo "app=main-app" >> "$GITHUB_OUTPUT"
-          echo "NEXT_PUBLIC_HUB_API_HOST='https://hub${{ github.event.inputs.deploy_env == 'prod' && '' || format('-{0}', github.event.inputs.deploy_env) }}.airklass.com'" >> .env.production
-
+          if [[ ${{ github.event.inputs.deploy_env == 'prod'}} ]]; then
+            echo "NEXT_PUBLIC_HUB_API_HOST='https://hub.airklass.com'" >> .env.production
+          else
+            echo "NEXT_PUBLIC_HUB_API_HOST='https://hub-${{ github.event.inputs.deploy_env }}.airklass.com'" >> .env.production
+          fi
       - name: Check variables
         run: |
           echo "sha_short: ${{ steps.vars.outputs.sha_short }}"
